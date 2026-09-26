@@ -11,6 +11,12 @@ type BeforeInstallPromptEvent = Event & {
   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
 };
 
+declare global {
+  interface Window {
+    __pwaPrompt?: BeforeInstallPromptEvent | null;
+  }
+}
+
 type Platform = "prompt" | "ios" | "android" | "desktop";
 
 function isStandalone() {
@@ -36,15 +42,12 @@ export function PwaChrome() {
   const [platform, setPlatform] = useState<Platform>("desktop");
 
   useEffect(() => {
-    if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
-      void navigator.serviceWorker.register("/sw.js");
-    }
-
     if (isStandalone() || sessionStorage.getItem(SESSION_KEY) === "hidden") return;
 
     const detected = detectPlatform();
-    setPlatform(detected);
+    setPlatform(window.__pwaPrompt ? "prompt" : detected);
     setVisible(true);
+    if (window.__pwaPrompt) deferred.current = window.__pwaPrompt;
 
     function hide() {
       sessionStorage.setItem(SESSION_KEY, "hidden");
@@ -53,19 +56,25 @@ export function PwaChrome() {
 
     function onPrompt(event: Event) {
       event.preventDefault();
-      deferred.current = event as BeforeInstallPromptEvent;
+      const promptEvent = (event as BeforeInstallPromptEvent).prompt ? event as BeforeInstallPromptEvent : window.__pwaPrompt;
+      if (!promptEvent) return;
+      deferred.current = promptEvent;
+      window.__pwaPrompt = promptEvent;
       setPlatform("prompt");
     }
 
     function onInstalled() {
       deferred.current = null;
+      window.__pwaPrompt = null;
       hide();
     }
 
     window.addEventListener("beforeinstallprompt", onPrompt);
+    window.addEventListener("pwa:prompt", onPrompt);
     window.addEventListener("appinstalled", onInstalled);
     return () => {
       window.removeEventListener("beforeinstallprompt", onPrompt);
+      window.removeEventListener("pwa:prompt", onPrompt);
       window.removeEventListener("appinstalled", onInstalled);
     };
   }, []);
@@ -76,11 +85,12 @@ export function PwaChrome() {
   }
 
   async function install() {
-    const event = deferred.current;
+    const event = deferred.current ?? window.__pwaPrompt ?? null;
     if (event) {
       await event.prompt();
       const choice = await event.userChoice;
       deferred.current = null;
+      window.__pwaPrompt = null;
       if (choice.outcome === "accepted") {
         sessionStorage.setItem(SESSION_KEY, "hidden");
         setVisible(false);

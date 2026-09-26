@@ -17,7 +17,12 @@ function shouldBypass(url) {
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => cache.add(new Request(OFFLINE_URL, { cache: "reload" })))
+      .then((cache) => cache.addAll([
+        OFFLINE_URL,
+        "/manifest.webmanifest",
+        "/icons/icon-192.png",
+        "/icons/icon-512.png",
+      ]))
       .then(() => self.skipWaiting()),
   );
 });
