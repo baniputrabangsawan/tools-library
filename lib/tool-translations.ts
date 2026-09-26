@@ -63,6 +63,23 @@ const indonesianDescriptions: Record<string, string> = {
   "AutoScraper": "Pustaka Python ringan yang mempelajari dan mengotomatiskan scraping data web.",
   "Kimi K3 in C": "Implementasi C portabel untuk menjalankan inferensi Kimi K3 pada CPU dengan dependensi minimal.",
   "Generative AI for Beginners": "Kurikulum 21 pelajaran untuk mempelajari cara membangun dengan AI generatif.",
+  "React Bits": "Koleksi komponen React beranimasi dan interaktif dengan alur kerja copy-paste.",
+  "Magic UI": "Komponen dan efek animasi React serta Tailwind CSS dengan integrasi copy-paste.",
+  "Motion Primitives": "Kit komponen animasi open-source untuk React, Next.js, dan Tailwind CSS.",
+  "Uiverse": "Pustaka elemen UI gratis dan open-source buatan komunitas, tersedia dalam HTML/CSS, Tailwind, dan React.",
+  "Cult UI": "Pustaka komponen beranimasi untuk Tailwind CSS dan shadcn/ui dengan pola copy-paste.",
+  "React Flow": "Pustaka React untuk membangun editor berbasis node, workflow builder, dan diagram interaktif.",
+  "Rete.js": "Framework TypeScript untuk membangun editor pemrograman visual dengan antarmuka berbasis node.",
+  "Cosmograph": "Platform visualisasi graf berakselerasi GPU untuk menjelajahi jaringan besar di browser.",
+  "Codrops": "Blog desain web dan pengembangan frontend dengan tutorial kreatif, demo interaktif, dan sumber daya UI eksperimental.",
+  "shadcn/ui Blocks": "Blok dashboard, sidebar, login, dan tata letak halaman gratis dan open-source yang dibangun dengan shadcn/ui dan Tailwind CSS.",
+  "Tremor Blocks": "Blok dashboard dan chart gratis dan open-source yang dibangun dengan React, Tailwind CSS, dan Tremor.",
+  "Mobbin": "Platform referensi desain dengan tangkapan layar alur UI aplikasi mobile dan web nyata.",
+  "Awwwards": "Platform penghargaan website yang mengkurasi dan mengakui desain web yang luar biasa.",
+  "Nicelydone": "Pustaka tangkapan layar aplikasi SaaS nyata dan alur pengguna yang dikurasi untuk riset desain.",
+  "SaaSFrame": "Pustaka inspirasi desain halaman website SaaS, antarmuka produk, dan email.",
+  "Radix UI Primitives": "Primitif komponen React yang tidak bergaya, aksesibel, dan open-source untuk membangun design system.",
+  "Base UI": "Pustaka komponen React yang tidak bergaya dan aksesibel untuk membangun design system kustom.",
 };
 
 const indonesianSubcategories: Record<string, string> = {
@@ -95,6 +112,12 @@ const indonesianSubcategories: Record<string, string> = {
   "AI Tools": "Tool AI",
   "Coding": "Pemrograman",
   "Framework": "Framework",
+  "Interactive Components": "Komponen Interaktif",
+  "Graphs & Visualization": "Grafik & Visualisasi",
+  "Interactive Experiments": "Eksperimen Interaktif",
+  "SaaS UI": "UI SaaS",
+  "SaaS Inspiration": "Inspirasi SaaS",
+  "Component Foundations": "Fondasi Komponen",
 };
 
 const indonesianTags: Record<string, string> = {
@@ -151,6 +174,20 @@ const indonesianTags: Record<string, string> = {
   "Browser Automation": "Otomasi Browser",
   "Scraping": "Scraping",
   "Automation": "Otomasi",
+  "Community": "Komunitas",
+  "Diagrams": "Diagram",
+  "Node Editor": "Editor Node",
+  "Visual Programming": "Pemrograman Visual",
+  "Graph": "Graf",
+  "Visualization": "Visualisasi",
+  "GPU": "GPU",
+  "Dashboard": "Dasbor",
+  "Charts": "Grafik",
+  "Mobile": "Mobile",
+  "Awards": "Penghargaan",
+  "SaaS": "SaaS",
+  "Accessibility": "Aksesibilitas",
+  "Web Design": "Desain Web",
 };
 
 export function toolDescription(language: Language, name: string, fallback: string) {
