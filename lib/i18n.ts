@@ -30,6 +30,11 @@ const en = {
   browse: "Browse",
   all: "All",
   filterByType: "Filter by type",
+  filterByTag: "Filter by tag",
+  allTags: "All tags",
+  gridView: "Grid view",
+  listView: "List view",
+  showFilters: "Show filters",
   allTypes: "All types",
   deleteConfirm: "Delete this tool from your library?",
   removeFavorite: "Remove from favorites",
@@ -76,6 +81,7 @@ const en = {
   previewUnavailable: "Preview unavailable for this website.",
   openOriginal: "Open the original site",
   domain: "Domain",
+  githubStars: "GitHub stars",
 };
 
 export type TranslationKey = keyof typeof en;
@@ -108,6 +114,11 @@ const id: Record<TranslationKey, string> = {
   browse: "Jelajahi",
   all: "Semua",
   filterByType: "Filter berdasarkan tipe",
+  filterByTag: "Filter berdasarkan tag",
+  allTags: "Semua tag",
+  gridView: "Tampilan grid",
+  listView: "Tampilan daftar",
+  showFilters: "Tampilkan filter",
   allTypes: "Semua tipe",
   deleteConfirm: "Hapus tool ini dari pustaka Anda?",
   removeFavorite: "Hapus dari favorit",
@@ -154,6 +165,7 @@ const id: Record<TranslationKey, string> = {
   previewUnavailable: "Pratinjau website ini tidak tersedia.",
   openOriginal: "Buka situs asli",
   domain: "Domain",
+  githubStars: "Bintang GitHub",
 };
 
 const dictionaries = { en, id };
