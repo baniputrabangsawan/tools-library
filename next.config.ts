@@ -2,10 +2,19 @@ import type { NextConfig } from "next";
 import path from "node:path";
 
 const nextConfig: NextConfig = {
-  // Keep production builds separate from the development server cache.
-  // Running `pnpm build` while `pnpm dev` is active must not replace its assets.
   distDir: process.env.NEXT_OUTPUT_DIR ?? ".next",
   outputFileTracingRoot: path.join(__dirname),
+  async headers() {
+    return [
+      {
+        source: "/sw.js",
+        headers: [
+          { key: "Cache-Control", value: "no-cache, no-store, must-revalidate" },
+          { key: "Service-Worker-Allowed", value: "/" },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

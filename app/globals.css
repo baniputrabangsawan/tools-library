@@ -51,6 +51,38 @@ a { color: inherit; text-decoration: none; }
   grid-template-columns: 208px minmax(0, 1fr);
 }
 
+.pwa-banner {
+  position: fixed;
+  z-index: 12;
+  right: 16px;
+  bottom: 16px;
+  left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(420px, calc(100vw - 32px));
+  padding: 10px 10px 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.pwa-banner-copy { min-width: 0; flex: 1; }
+.pwa-banner-copy p { margin: 0; }
+.pwa-banner-copy p:first-child { font-size: 13px; font-weight: 650; }
+.pwa-banner-copy p:last-child { margin-top: 2px; color: var(--muted); font-size: 12px; line-height: 1.4; }
+.pwa-banner-actions { display: flex; flex: 0 0 auto; align-items: center; gap: 4px; }
+.pwa-install { min-height: 32px; padding: 0 10px; font-size: 12px; }
+
+@media (max-width: 760px) {
+  .pwa-banner {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    width: auto;
+  }
+}
+
 .sidebar {
   position: sticky;
   top: 0;
