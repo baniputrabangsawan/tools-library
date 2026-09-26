@@ -108,6 +108,19 @@ const indonesianDescriptions: Record<string, string> = {
   "Startup Stash": "Direktori tool dan sumber daya untuk startup, dikelompokkan berdasarkan kegunaan.",
   "Indie Hackers": "Komunitas tempat founder membagikan strategi, pendapatan, dan cerita di balik bisnis online.",
   "Designeer": "Direktori terkurasi untuk tool desain, pustaka komponen, inspirasi, dan orang yang layak dipelajari.",
+  "MapLibre GL JS": "Pustaka TypeScript yang merender peta vektor interaktif di browser dengan WebGL.",
+  "Chart.js": "Pustaka charting JavaScript yang sederhana untuk menggambar grafik responsif pada canvas HTML5.",
+  "Apache ECharts": "Pustaka charting dan visualisasi data interaktif untuk web, dikelola Apache Software Foundation.",
+  "D3.js": "Pustaka JavaScript untuk membangun visualisasi data kustom dan dinamis dengan mengikat data ke DOM.",
+  "TanStack Query": "Pustaka state asinkron untuk mengambil, menyimpan cache, dan memperbarui data server di React, Vue, Solid, Svelte, dan lainnya.",
+  "TanStack Table": "Mesin tabel headless untuk pengurutan, filter, paginasi, dan data grid, dengan adapter untuk beberapa framework UI.",
+  "Zod": "Pustaka validasi skema yang mengutamakan TypeScript, dengan inferensi tipe statis. Juga berfungsi di JavaScript biasa.",
+  "React Hook Form": "Pustaka React yang performan untuk membangun form dengan validasi yang tidak mengganggu dan lebih sedikit re-render.",
+  "Fuse.js": "Pustaka fuzzy-search JavaScript yang ringan tanpa dependensi.",
+  "Tiptap": "Framework editor rich-text headless dengan inti open-source dan ekstensi untuk React, Vue, dan JavaScript biasa.",
+  "Floating UI": "Pustaka JavaScript untuk memosisikan tooltip, popover, dan dropdown agar tetap terlihat di layar.",
+  "Motion": "Pustaka animasi produksi untuk React, JavaScript, dan Vue, sebelumnya dikenal sebagai Framer Motion.",
+  "tldraw SDK": "SDK React untuk membangun papan tulis dan aplikasi infinite canvas dengan tool gambar dan kolaborasi.",
 };
 
 const indonesianSubcategories: Record<string, string> = {
@@ -232,6 +245,11 @@ const indonesianTags: Record<string, string> = {
   "Trends": "Tren",
   "Generator": "Generator",
   "Tools": "Tool",
+  "Validation": "Validasi",
+  "Forms": "Formulir",
+  "Search": "Pencarian",
+  "Editor": "Editor",
+  "Canvas": "Kanvas",
 };
 
 export function toolDescription(language: Language, name: string, fallback: string) {
