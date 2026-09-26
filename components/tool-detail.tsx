@@ -11,9 +11,9 @@ import { subcategoryLabel, tagLabel, toolDescription } from "@/lib/tool-translat
 import { useLanguage } from "@/lib/use-language";
 import { formatGitHubStars, useGitHubStars } from "@/lib/use-github-stars";
 
-export function ToolDetail({ slug }: { slug: string }) {
+export function ToolDetail({ slug, initialTool }: { slug: string; initialTool?: Tool }) {
   const { language, t } = useLanguage();
-  const [tool, setTool] = useState<Tool | null | undefined>(undefined);
+  const [tool, setTool] = useState<Tool | null | undefined>(initialTool);
   const [previewError, setPreviewError] = useState(false);
   const router = useRouter();
   useEffect(() => {

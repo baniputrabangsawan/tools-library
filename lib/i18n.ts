@@ -1,6 +1,11 @@
 export type Language = "en" | "id";
 
 export const languageStorageKey = "my-tools-language";
+export const languageCookieName = "my-tools-language";
+
+export function parseLanguage(value: string | undefined | null): Language {
+  return value === "id" ? "id" : "en";
+}
 
 const en = {
   language: "Language",

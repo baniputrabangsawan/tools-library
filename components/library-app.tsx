@@ -25,9 +25,9 @@ function isSkillTool(tool: Tool) {
   return tool.subcategory.toLowerCase().includes("skill") || tool.tags.some((tag) => tag.toLowerCase() === "skills" || tag.toLowerCase() === "skill");
 }
 
-export function LibraryApp() {
+export function LibraryApp({ initialTools }: { initialTools: Tool[] }) {
   const { language, setLanguage, t } = useLanguage();
-  const [tools, setTools] = useState<Tool[]>([]);
+  const [tools, setTools] = useState(initialTools);
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<Filter>("All");
   const [type, setType] = useState<"All" | ToolType>("All");
