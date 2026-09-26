@@ -87,6 +87,13 @@ const en = {
   openOriginal: "Open the original site",
   domain: "Domain",
   githubStars: "GitHub stars",
+  installTitle: "Install My Tools",
+  installBody: "Add this library to your home screen for quicker access.",
+  installAction: "Install",
+  dismissAction: "Dismiss",
+  iosInstallHelp: "Tap Share, then Add to Home Screen.",
+  offlineTitle: "You are offline",
+  offlineHelp: "Reconnect to browse the library. Tools saved in this browser stay on your device.",
 };
 
 export type TranslationKey = keyof typeof en;
@@ -171,6 +178,13 @@ const id: Record<TranslationKey, string> = {
   openOriginal: "Buka situs asli",
   domain: "Domain",
   githubStars: "Bintang GitHub",
+  installTitle: "Pasang My Tools",
+  installBody: "Tambahkan pustaka ini ke layar utama agar lebih cepat dibuka.",
+  installAction: "Pasang",
+  dismissAction: "Tutup",
+  iosInstallHelp: "Ketuk Bagikan, lalu Tambahkan ke Layar Utama.",
+  offlineTitle: "Anda sedang offline",
+  offlineHelp: "Sambungkan kembali untuk menelusuri pustaka. Tool yang tersimpan di browser ini tetap ada di perangkat Anda.",
 };
 
 const dictionaries = { en, id };
