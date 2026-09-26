@@ -80,6 +80,20 @@ const indonesianDescriptions: Record<string, string> = {
   "SaaSFrame": "Pustaka inspirasi desain halaman website SaaS, antarmuka produk, dan email.",
   "Radix UI Primitives": "Primitif komponen React yang tidak bergaya, aksesibel, dan open-source untuk membangun design system.",
   "Base UI": "Pustaka komponen React yang tidak bergaya dan aksesibel untuk membangun design system kustom.",
+  "Liveline": "Grafik garis beranimasi real-time untuk React, digambar pada satu canvas tanpa dependensi tambahan.",
+  "dnd kit": "Toolkit drag-and-drop modern untuk membangun antarmuka yang dapat diurutkan dan aksesibel di React, Vue, Svelte, dan Solid.",
+  "Myinstants": "Pustaka besar tombol suara instan dan efek suara meme yang dapat diputar, dibagikan, dan disimpan.",
+  "Swishy": "Tool desain motion berbasis AI untuk membuat teks, logo, dan grafik video beranimasi tanpa After Effects.",
+  "WebGradients": "Koleksi 180 latar gradien CSS gratis dengan kode siap salin untuk website dan UI.",
+  "Iconbuddy": "Cari dan sesuaikan ratusan ribu ikon SVG open-source, lalu ekspor sebagai SVG, PNG, atau JSX.",
+  "fffuel": "Kumpulan generator SVG gratis untuk gradien, pola, tekstur, bentuk, dan tool warna.",
+  "Driver.js": "Pustaka JavaScript ringan untuk tur produk, sorotan elemen, dan onboarding kontekstual.",
+  "Pexels": "Foto dan video stok gratis yang dapat digunakan tanpa atribusi.",
+  "Its Hover": "Ikon React beranimasi open-source yang bergerak saat di-hover dan cocok untuk design system modern.",
+  "AnimateIcons": "Ikon SVG beranimasi gratis untuk React, dibangun di atas Lucide dan Motion, dapat dipasang lewat shadcn atau npm.",
+  "Heroicons Animated": "Heroicons beranimasi gratis untuk React, dibangun dengan Motion dan siap disalin ke proyek.",
+  "Lucide Animated": "Pustaka open-source ikon Lucide beranimasi untuk React, didukung Motion.",
+  "Number Flow": "Komponen angka beranimasi yang aksesibel untuk React, dengan transisi digit saat nilai berubah.",
 };
 
 const indonesianSubcategories: Record<string, string> = {
@@ -118,6 +132,7 @@ const indonesianSubcategories: Record<string, string> = {
   "SaaS UI": "UI SaaS",
   "SaaS Inspiration": "Inspirasi SaaS",
   "Component Foundations": "Fondasi Komponen",
+  "Audio": "Audio",
 };
 
 const indonesianTags: Record<string, string> = {
@@ -188,6 +203,14 @@ const indonesianTags: Record<string, string> = {
   "SaaS": "SaaS",
   "Accessibility": "Aksesibilitas",
   "Web Design": "Desain Web",
+  "Drag and Drop": "Seret dan Lepas",
+  "Audio": "Audio",
+  "Sound": "Suara",
+  "Icons": "Ikon",
+  "SVG": "SVG",
+  "Photos": "Foto",
+  "Stock": "Stok",
+  "Onboarding": "Onboarding",
 };
 
 export function toolDescription(language: Language, name: string, fallback: string) {
