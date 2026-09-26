@@ -39,6 +39,8 @@ const themeScript = `(function(){try{var t=localStorage.getItem("my-tools-theme"
 
 const languageMigrateScript = `(function(){try{var k="my-tools-language";var m=document.cookie.match(/(?:^|; )my-tools-language=([^;]*)/);var c=m?decodeURIComponent(m[1]):"";if(c==="id"||c==="en")return;var ls=localStorage.getItem(k);if(ls!=="id"&&ls!=="en")return;document.cookie=k+"="+ls+"; path=/; max-age=31536000; SameSite=Lax";location.reload();}catch(e){}})();`;
 
+const pwaScript = `(function(){try{window.__pwaPrompt=null;window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__pwaPrompt=e;window.dispatchEvent(new Event("pwa:prompt"));});if("serviceWorker"in navigator)navigator.serviceWorker.register("/sw.js");}catch(e){}})();`;
+
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const language = parseLanguage((await cookies()).get(languageCookieName)?.value);
   return (
@@ -46,6 +48,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       <head>
         <script dangerouslySetInnerHTML={{ __html: languageMigrateScript }} />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: pwaScript }} />
       </head>
       <body className={`${geist.variable} ${geistMono.variable}`}>
         <LanguageProvider initialLanguage={language}>
