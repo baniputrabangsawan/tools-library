@@ -92,6 +92,8 @@ const en = {
   installAction: "Install",
   dismissAction: "Dismiss",
   iosInstallHelp: "Tap Share, then Add to Home Screen.",
+  androidInstallHelp: "Open the browser menu, then tap Install app or Add to Home screen.",
+  desktopInstallHelp: "Use the install icon in the address bar, or Install app in the browser menu.",
   offlineTitle: "You are offline",
   offlineHelp: "Reconnect to browse the library. Tools saved in this browser stay on your device.",
 };
@@ -183,6 +185,8 @@ const id: Record<TranslationKey, string> = {
   installAction: "Pasang",
   dismissAction: "Tutup",
   iosInstallHelp: "Ketuk Bagikan, lalu Tambahkan ke Layar Utama.",
+  androidInstallHelp: "Buka menu browser, lalu ketuk Pasang aplikasi atau Tambahkan ke layar utama.",
+  desktopInstallHelp: "Gunakan ikon pasang di bilah alamat, atau Pasang aplikasi di menu browser.",
   offlineTitle: "Anda sedang offline",
   offlineHelp: "Sambungkan kembali untuk menelusuri pustaka. Tool yang tersimpan di browser ini tetap ada di perangkat Anda.",
 };

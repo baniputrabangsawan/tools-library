@@ -11,6 +11,8 @@ type BeforeInstallPromptEvent = Event & {
   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
 };
 
+type Platform = "prompt" | "ios" | "android" | "desktop";
+
 function isStandalone() {
   const nav = window.navigator as Navigator & { standalone?: boolean };
   return window.matchMedia("(display-mode: standalone)").matches
@@ -18,19 +20,20 @@ function isStandalone() {
     || nav.standalone === true;
 }
 
-function isIosSafari() {
+function detectPlatform(): Exclude<Platform, "prompt"> {
   const ua = window.navigator.userAgent;
   const ios = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-  const safari = /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS|Chrome/.test(ua);
-  return ios && safari;
+  if (ios) return "ios";
+  if (/Android/i.test(ua)) return "android";
+  return "desktop";
 }
 
 export function PwaChrome() {
   const { t } = useLanguage();
   const deferred = useRef<BeforeInstallPromptEvent | null>(null);
   const [visible, setVisible] = useState(false);
-  const [iosHelp, setIosHelp] = useState(false);
-  const [mode, setMode] = useState<"prompt" | "ios" | null>(null);
+  const [showHelp, setShowHelp] = useState(false);
+  const [platform, setPlatform] = useState<Platform>("desktop");
 
   useEffect(() => {
     if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
@@ -38,6 +41,10 @@ export function PwaChrome() {
     }
 
     if (isStandalone() || sessionStorage.getItem(SESSION_KEY) === "hidden") return;
+
+    const detected = detectPlatform();
+    setPlatform(detected);
+    setVisible(true);
 
     function hide() {
       sessionStorage.setItem(SESSION_KEY, "hidden");
@@ -47,8 +54,7 @@ export function PwaChrome() {
     function onPrompt(event: Event) {
       event.preventDefault();
       deferred.current = event as BeforeInstallPromptEvent;
-      setMode("prompt");
-      setVisible(true);
+      setPlatform("prompt");
     }
 
     function onInstalled() {
@@ -58,12 +64,6 @@ export function PwaChrome() {
 
     window.addEventListener("beforeinstallprompt", onPrompt);
     window.addEventListener("appinstalled", onInstalled);
-
-    if (isIosSafari()) {
-      setMode("ios");
-      setVisible(true);
-    }
-
     return () => {
       window.removeEventListener("beforeinstallprompt", onPrompt);
       window.removeEventListener("appinstalled", onInstalled);
@@ -87,20 +87,26 @@ export function PwaChrome() {
       }
       return;
     }
-    if (mode === "ios") setIosHelp(true);
+    setShowHelp(true);
   }
 
-  if (!visible || !mode) return null;
+  if (!visible) return null;
+
+  const help = platform === "ios"
+    ? t("iosInstallHelp")
+    : platform === "android"
+      ? t("androidInstallHelp")
+      : t("desktopInstallHelp");
 
   return (
     <div className="pwa-banner" role="dialog" aria-labelledby="pwa-banner-title" aria-describedby="pwa-banner-copy">
       <div className="pwa-banner-copy">
         <p id="pwa-banner-title">{t("installTitle")}</p>
-        <p id="pwa-banner-copy">{iosHelp ? t("iosInstallHelp") : t("installBody")}</p>
+        <p id="pwa-banner-copy">{showHelp ? help : t("installBody")}</p>
       </div>
       <div className="pwa-banner-actions">
         <button type="button" className="add-button pwa-install" onClick={() => void install()}>
-          {mode === "ios" ? <Share size={15} /> : <Download size={15} />}
+          {platform === "ios" ? <Share size={15} /> : <Download size={15} />}
           {t("installAction")}
         </button>
         <button type="button" className="icon-button" onClick={dismiss} aria-label={t("dismissAction")}>
