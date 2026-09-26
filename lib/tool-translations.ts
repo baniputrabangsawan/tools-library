@@ -94,6 +94,20 @@ const indonesianDescriptions: Record<string, string> = {
   "Heroicons Animated": "Heroicons beranimasi gratis untuk React, dibangun dengan Motion dan siap disalin ke proyek.",
   "Lucide Animated": "Pustaka open-source ikon Lucide beranimasi untuk React, didukung Motion.",
   "Number Flow": "Komponen angka beranimasi yang aksesibel untuk React, dengan transisi digit saat nilai berubah.",
+  "UI SFX": "Pustaka open-source efek suara antarmuka dan pemutar Web Audio untuk isyarat UI.",
+  "Libraries.dev": "Pustaka efek UI React siap produksi seperti beam, orb, gooey, dan liquid metal.",
+  "DialKit": "Kontrol langsung untuk menyesuaikan motion, tata letak, warna, dan waktu animasi di React, Vue, Svelte, dan Solid.",
+  "Leaflet": "Pustaka JavaScript open-source untuk peta interaktif yang ramah perangkat mobile.",
+  "Kaggle": "Platform dataset, notebook, kompetisi, dan evaluasi model machine learning.",
+  "playgrnd Cipher": "Generator latar grid glif dengan kontrol langsung, lalu ekspor sebagai gambar atau video.",
+  "Ora": "Menilai seberapa baik agen AI dapat menemukan, membaca, dan menggunakan website, lalu menunjukkan apa yang perlu diperbaiki.",
+  "Semrush": "Platform SEO, visibilitas pencarian AI, riset kompetitor, dan pemasaran konten.",
+  "BetaList": "Komunitas untuk menemukan dan membagikan startup tahap awal yang masih dalam beta.",
+  "Trend Hunter": "Platform riset tren yang mencakup produk, budaya, dan inovasi yang sedang muncul.",
+  "Exploding Topics": "Menemukan topik, produk, dan startup yang tumbuh cepat sebelum menjadi arus utama.",
+  "Startup Stash": "Direktori tool dan sumber daya untuk startup, dikelompokkan berdasarkan kegunaan.",
+  "Indie Hackers": "Komunitas tempat founder membagikan strategi, pendapatan, dan cerita di balik bisnis online.",
+  "Designeer": "Direktori terkurasi untuk tool desain, pustaka komponen, inspirasi, dan orang yang layak dipelajari.",
 };
 
 const indonesianSubcategories: Record<string, string> = {
@@ -133,6 +147,8 @@ const indonesianSubcategories: Record<string, string> = {
   "SaaS Inspiration": "Inspirasi SaaS",
   "Component Foundations": "Fondasi Komponen",
   "Audio": "Audio",
+  "Startups": "Startup",
+  "Trends": "Tren",
 };
 
 const indonesianTags: Record<string, string> = {
@@ -211,6 +227,11 @@ const indonesianTags: Record<string, string> = {
   "Photos": "Foto",
   "Stock": "Stok",
   "Onboarding": "Onboarding",
+  "Maps": "Peta",
+  "Startups": "Startup",
+  "Trends": "Tren",
+  "Generator": "Generator",
+  "Tools": "Tool",
 };
 
 export function toolDescription(language: Language, name: string, fallback: string) {

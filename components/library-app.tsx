@@ -173,12 +173,6 @@ export function LibraryApp({ initialTools }: { initialTools: Tool[] }) {
       <section className="content">
         <header className="topbar">
           <button className="icon-button menu-button" onClick={() => setShowMobileMenu(true)} aria-label={t("openMenu")}><Menu size={18} /></button>
-          <div className="search-wrap">
-            <Search size={16} />
-            <input ref={searchRef} value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t("searchPlaceholder")} aria-label={t("searchTools")} aria-keyshortcuts="Meta+K Control+K" />
-            {searchHotkey && <kbd className="search-kbd">{searchHotkey}</kbd>}
-            {query && <button onClick={() => setQuery("")} aria-label={t("clearSearch")}><X size={15} /></button>}
-          </div>
           <button className="icon-button theme-button" onClick={setTheme} aria-label={t("toggleTheme")}>
             <Sun size={16} className="theme-icon-sun" />
             <Moon size={16} className="theme-icon-moon" />
@@ -196,6 +190,13 @@ export function LibraryApp({ initialTools }: { initialTools: Tool[] }) {
             <strong>{filtered.length}</strong>
             <span>{filtered.length === 1 ? t("toolFound") : t("toolsFound")}</span>
           </div>
+        </div>
+
+        <div className="search-wrap">
+          <Search size={16} />
+          <input ref={searchRef} value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t("searchPlaceholder")} aria-label={t("searchTools")} aria-keyshortcuts="Meta+K Control+K" />
+          {searchHotkey && <kbd className="search-kbd">{searchHotkey}</kbd>}
+          {query && <button onClick={() => setQuery("")} aria-label={t("clearSearch")}><X size={15} /></button>}
         </div>
 
         <div className="toolbar-mobile">
