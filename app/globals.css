@@ -193,20 +193,21 @@ a { color: inherit; text-decoration: none; }
 .content { min-width: 0; padding: 0 clamp(18px, 3vw, 40px) 48px; }
 
 .topbar {
-  height: 56px;
+  height: 48px;
   display: flex;
   gap: 8px;
   align-items: center;
   border-bottom: 1px solid var(--line);
 }
 .search-wrap {
-  flex: 1;
-  max-width: 560px;
-  height: 36px;
+  width: 100%;
+  max-width: 720px;
+  height: 38px;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 0 10px;
+  margin: 0 0 12px;
+  padding: 0 12px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
@@ -265,10 +266,10 @@ a { color: inherit; text-decoration: none; }
 
 .page-heading {
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
   gap: 16px;
-  padding: 18px 0 12px;
+  padding: 14px 0 8px;
 }
 .eyebrow {
   margin: 0 0 4px;
@@ -285,8 +286,9 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.2;
   font-weight: 650;
 }
+.page-heading h1 { font-size: 24px; }
 .page-heading > div:first-child > p:last-child {
-  max-width: 520px;
+  max-width: 42rem;
   margin: 4px 0 0;
   color: var(--muted);
   font-size: 13px;
@@ -295,12 +297,13 @@ a { color: inherit; text-decoration: none; }
 .library-stat {
   display: grid;
   justify-items: end;
+  padding-top: 18px;
   white-space: nowrap;
 }
 .library-stat strong {
   color: var(--ink);
   font-family: var(--font-geist-mono), monospace;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 500;
   letter-spacing: -0.04em;
 }
@@ -311,7 +314,7 @@ a { color: inherit; text-decoration: none; }
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   padding: 8px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -738,13 +741,13 @@ a { color: inherit; text-decoration: none; }
     background: rgba(23, 25, 31, 0.4);
   }
   .content { padding: 0 14px 40px; }
-  .topbar { height: 56px; }
+  .topbar { height: 48px; }
   .menu-button, .mobile-close, .filters-toggle { display: grid; }
   .desktop-add { display: none; }
-  .theme-button { margin-left: 0; }
-  .search-wrap { min-width: 0; }
+  .theme-button { margin-left: auto; }
+  .search-wrap { max-width: none; min-width: 0; margin-bottom: 10px; }
   .search-kbd { display: none; }
-  .page-heading { align-items: start; padding: 14px 0 10px; }
+  .page-heading { align-items: start; padding: 12px 0 8px; }
   .page-heading h1 { font-size: 20px; }
   .filters { display: none; }
   .filters.open { display: flex; }
