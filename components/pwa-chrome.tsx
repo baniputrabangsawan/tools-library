@@ -34,6 +34,11 @@ function detectPlatform(): Exclude<Platform, "prompt"> {
   return "desktop";
 }
 
+function savedPrompt() {
+  const event = window.__pwaPrompt;
+  return event && typeof event.prompt === "function" ? event : null;
+}
+
 export function PwaChrome() {
   const { t } = useLanguage();
   const deferred = useRef<BeforeInstallPromptEvent | null>(null);
@@ -44,20 +49,22 @@ export function PwaChrome() {
   useEffect(() => {
     if (isStandalone() || sessionStorage.getItem(SESSION_KEY) === "hidden") return;
 
-    const detected = detectPlatform();
-    setPlatform(window.__pwaPrompt ? "prompt" : detected);
+    const existing = savedPrompt();
+    deferred.current = existing;
+    setPlatform(existing ? "prompt" : detectPlatform());
     setVisible(true);
-    if (window.__pwaPrompt) deferred.current = window.__pwaPrompt;
 
     function hide() {
       sessionStorage.setItem(SESSION_KEY, "hidden");
       setVisible(false);
     }
 
-    function onPrompt(event: Event) {
-      event.preventDefault();
-      const promptEvent = (event as BeforeInstallPromptEvent).prompt ? event as BeforeInstallPromptEvent : window.__pwaPrompt;
+    function capture(event: Event) {
+      const promptEvent = typeof (event as BeforeInstallPromptEvent).prompt === "function"
+        ? event as BeforeInstallPromptEvent
+        : savedPrompt();
       if (!promptEvent) return;
+      event.preventDefault();
       deferred.current = promptEvent;
       window.__pwaPrompt = promptEvent;
       setPlatform("prompt");
@@ -69,12 +76,12 @@ export function PwaChrome() {
       hide();
     }
 
-    window.addEventListener("beforeinstallprompt", onPrompt);
-    window.addEventListener("pwa:prompt", onPrompt);
+    window.addEventListener("beforeinstallprompt", capture);
+    window.addEventListener("pwa:prompt", capture);
     window.addEventListener("appinstalled", onInstalled);
     return () => {
-      window.removeEventListener("beforeinstallprompt", onPrompt);
-      window.removeEventListener("pwa:prompt", onPrompt);
+      window.removeEventListener("beforeinstallprompt", capture);
+      window.removeEventListener("pwa:prompt", capture);
       window.removeEventListener("appinstalled", onInstalled);
     };
   }, []);
@@ -84,17 +91,20 @@ export function PwaChrome() {
     setVisible(false);
   }
 
-  async function install() {
-    const event = deferred.current ?? window.__pwaPrompt ?? null;
+  function install() {
+    const event = deferred.current ?? savedPrompt();
     if (event) {
-      await event.prompt();
-      const choice = await event.userChoice;
-      deferred.current = null;
-      window.__pwaPrompt = null;
-      if (choice.outcome === "accepted") {
-        sessionStorage.setItem(SESSION_KEY, "hidden");
-        setVisible(false);
-      }
+      const result = event.prompt();
+      void Promise.resolve(result).then(() => event.userChoice).then((choice) => {
+        deferred.current = null;
+        window.__pwaPrompt = null;
+        if (choice.outcome === "accepted") {
+          sessionStorage.setItem(SESSION_KEY, "hidden");
+          setVisible(false);
+        } else {
+          setShowHelp(true);
+        }
+      }).catch(() => setShowHelp(true));
       return;
     }
     setShowHelp(true);
@@ -111,11 +121,11 @@ export function PwaChrome() {
   return (
     <div className="pwa-banner" role="dialog" aria-labelledby="pwa-banner-title" aria-describedby="pwa-banner-copy">
       <div className="pwa-banner-copy">
-        <p id="pwa-banner-title">{t("installTitle")}</p>
-        <p id="pwa-banner-copy">{showHelp ? help : t("installBody")}</p>
+        <p id="pwa-banner-title">{showHelp ? t("installNextStep") : t("installTitle")}</p>
+        <p id="pwa-banner-copy" className={showHelp ? "pwa-help" : undefined}>{showHelp ? help : t("installBody")}</p>
       </div>
       <div className="pwa-banner-actions">
-        <button type="button" className="add-button pwa-install" onClick={() => void install()}>
+        <button type="button" className="add-button pwa-install" onClick={install}>
           {platform === "ios" ? <Share size={15} /> : <Download size={15} />}
           {t("installAction")}
         </button>

@@ -73,6 +73,7 @@ a { color: inherit; text-decoration: none; }
 .pwa-banner-copy p { margin: 0; }
 .pwa-banner-copy p:first-child { font-size: 13px; font-weight: 650; }
 .pwa-banner-copy p:last-child { margin-top: 2px; color: var(--muted); font-size: 12px; line-height: 1.4; }
+.pwa-banner-copy p.pwa-help { color: var(--text); font-weight: 550; }
 .pwa-banner-actions { display: flex; flex: 0 0 auto; align-items: center; gap: 4px; }
 .pwa-install { min-height: 32px; padding: 0 10px; font-size: 12px; }
 
